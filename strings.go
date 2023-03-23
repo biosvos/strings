@@ -28,6 +28,15 @@ type MatchResult struct {
 	Groups []string
 }
 
+func (s Strings) Replace(regex string, to string) (string, error) {
+	re, err := regexp.Compile(regex)
+	if err != nil {
+		return "", err
+	}
+	ret := re.ReplaceAllString(string(s), to)
+	return ret, nil
+}
+
 func Join(strings []string, separator string) string {
 	if len(strings) == 0 {
 		return ""

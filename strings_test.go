@@ -35,3 +35,10 @@ func TestJoin(t *testing.T) {
 		})
 	}
 }
+
+func TestReplace(t *testing.T) {
+	body := `* <span class="colour" style="color:rgb(38, 55, 71)">Python과 Python Framework (Django / Flask 등)를 이용한 백엔드 서버 개발 경력 3년 이상</span>`
+	replace, err := Strings(body).Replace("(<.+?>)", "")
+	require.NoError(t, err)
+	require.Equal(t, "* Python과 Python Framework (Django / Flask 등)를 이용한 백엔드 서버 개발 경력 3년 이상", replace)
+}
